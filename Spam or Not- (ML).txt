@@ -1,0 +1,17 @@
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+
+X = np.array([ [0],[1],[2],[4],[5]])
+y = np.array([0, 0, 0, 1, 1])
+model = LogisticRegression()
+model.fit(X, y)
+
+
+no_of_frees = 7
+unknown_email = np.array([[no_of_frees]])
+prediction = model.predict(unknown_email)
+probability = model.predict_proba(unknown_email)
+
+print(f"Prediction for {no_of_frees} 'FREE' words: Class {prediction[0]}")
+print(f"Normal Email Chance: {probability[0][0]*100:.1f}%")
+print(f"Spam Email Chance: {probability[0][1]*100:.1f}%")
